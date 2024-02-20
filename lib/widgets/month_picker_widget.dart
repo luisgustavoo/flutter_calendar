@@ -123,24 +123,24 @@ class _MonthPickerWidgetState extends State<MonthPickerWidget> {
     // _handleMonthPageChanged(page);
   }
 
-  List<({int year, int month, int page})> _monthAndYearToPage() {
-    final monthList = <({int year, int month, int page})>[];
-    var page = 0;
-    for (var i = widget.firstDate;
-        i.isBefore(widget.lastDate);
-        i = i.add(const Duration(days: 30))) {
-      monthList.add(
-        (
-          year: i.year,
-          month: i.month,
-          page: page,
-        ),
-      );
-      page++;
-    }
+  // List<({int year, int month, int page})> _monthAndYearToPage() {
+  //   final monthList = <({int year, int month, int page})>[];
+  //   var page = 0;
+  //   for (var i = widget.firstDate;
+  //       i.isBefore(widget.lastDate);
+  //       i = i.add(const Duration(days: 30))) {
+  //     monthList.add(
+  //       (
+  //         year: i.year,
+  //         month: i.month,
+  //         page: page,
+  //       ),
+  //     );
+  //     page++;
+  //   }
 
-    return monthList;
-  }
+  //   return monthList;
+  // }
 
   @override
   void initState() {
