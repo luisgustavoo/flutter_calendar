@@ -6,8 +6,6 @@ class DayPickerWidget extends StatefulWidget {
   const DayPickerWidget({
     required this.currentDate,
     required this.onChanged,
-    required this.firstDate,
-    required this.lastDate,
     required this.displayedMonth,
     this.selectedDate,
     super.key,
@@ -19,10 +17,6 @@ class DayPickerWidget extends StatefulWidget {
 
   final ValueChanged<DateTime> onChanged;
 
-  final DateTime firstDate;
-
-  final DateTime lastDate;
-
   final DateTime displayedMonth;
 
   @override
@@ -32,17 +26,26 @@ class DayPickerWidget extends StatefulWidget {
 class _DayPickerWidgetState extends State<DayPickerWidget> {
   final _monthPickerHorizontalPadding = 8.0;
 
+  final abbreviationDaysWeek = [
+    'DOM.',
+    'SEG.',
+    'TER.',
+    'QUA.',
+    'QUI.',
+    'SEX',
+    'SÁB.'
+  ];
+
   List<Widget> _dayHeaders(
       TextStyle? headerStyle, MaterialLocalizations localizations) {
     final List<Widget> result = <Widget>[];
     for (int i = localizations.firstDayOfWeekIndex;
         result.length < DateTime.daysPerWeek;
         i = (i + 1) % DateTime.daysPerWeek) {
-      final String weekday = localizations.narrowWeekdays[i];
+      // print((i + 1) % DateTime.daysPerWeek);
+      final String weekday = abbreviationDaysWeek[i];
       result.add(
-        ExcludeSemantics(
-          child: Center(child: Text(weekday, style: headerStyle)),
-        ),
+        Center(child: Text(weekday, style: headerStyle)),
       );
     }
     return result;
@@ -60,7 +63,7 @@ class _DayPickerWidgetState extends State<DayPickerWidget> {
 
     const weekdayStyle = TextStyle(
       color: Colors.grey,
-      fontSize: 25,
+      fontSize: 14,
     );
 
     final List<Widget> dayItems = _dayHeaders(weekdayStyle, localizations);
@@ -69,12 +72,9 @@ class _DayPickerWidgetState extends State<DayPickerWidget> {
     while (day < daysInMonth) {
       day++;
       if (day < 1) {
-        dayItems.add(Container());
+        dayItems.add(const SizedBox.shrink());
       } else {
         final dayToBuild = DateTime(year, month, day);
-
-        // final bool isDisabled = dayToBuild.isAfter(widget.lastDate) ||
-        //     dayToBuild.isBefore(widget.firstDate);
 
         final bool isSelectedDay =
             DateUtils.isSameDay(widget.selectedDate, dayToBuild);

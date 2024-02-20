@@ -22,17 +22,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDatePicker(
+                context: context,
+                firstDate: DateTime.now(),
+                lastDate: DateTime(2025),
+              );
+            },
+            icon: const Icon(
+              Icons.date_range_rounded,
+            ),
+          ),
+        ],
+      ),
       body: CalendarDatePickerWidget(
         firstDate: DateTime.now(),
-        lastDate: DateTime(2025),
+        lastDate: DateTime(2100),
         currentDate: DateTime.now(),
         initialDate: DateTime.now(),
         onDateChanged: (value) {
-          // setState(() {
-          //   _selectedDate = value;
-          // });
-        },
-        onDisplayedMonthChanged: (value) {
           // setState(() {
           //   _selectedDate = value;
           // });
