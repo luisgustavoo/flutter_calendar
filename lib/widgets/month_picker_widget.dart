@@ -35,7 +35,6 @@ class _MonthPickerWidgetState extends State<MonthPickerWidget> {
   late DateTime _currentMonth;
   DateTime? _focusedDay;
   final GlobalKey _pageViewKey = GlobalKey();
-  late List<({int year, int month, int page})> monthAndYearToPageList;
 
   late PageController _pageController;
 
@@ -119,28 +118,7 @@ class _MonthPickerWidgetState extends State<MonthPickerWidget> {
       duration: const Duration(milliseconds: 500),
       curve: Curves.ease,
     );
-
-    // _handleMonthPageChanged(page);
   }
-
-  // List<({int year, int month, int page})> _monthAndYearToPage() {
-  //   final monthList = <({int year, int month, int page})>[];
-  //   var page = 0;
-  //   for (var i = widget.firstDate;
-  //       i.isBefore(widget.lastDate);
-  //       i = i.add(const Duration(days: 30))) {
-  //     monthList.add(
-  //       (
-  //         year: i.year,
-  //         month: i.month,
-  //         page: page,
-  //       ),
-  //     );
-  //     page++;
-  //   }
-
-  //   return monthList;
-  // }
 
   @override
   void initState() {

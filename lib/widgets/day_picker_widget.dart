@@ -42,7 +42,7 @@ class _DayPickerWidgetState extends State<DayPickerWidget> {
     for (int i = localizations.firstDayOfWeekIndex;
         result.length < DateTime.daysPerWeek;
         i = (i + 1) % DateTime.daysPerWeek) {
-      // print((i + 1) % DateTime.daysPerWeek);
+      // final String weekday = localizations.narrowWeekdays[i];
       final String weekday = abbreviationDaysWeek[i];
       result.add(
         Center(child: Text(weekday, style: headerStyle)),
